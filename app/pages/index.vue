@@ -53,7 +53,7 @@
                             <h1 class="text-3xl sm:text-4xl lg:text-6xl font-bold text-[#001E40] mb-3">Know when your
                                 professor is actually
                                 available</h1>
-                            <h1 class="text-l font-normal text-[#001E40]">Stop sending messages asking if professors are
+                            <h1 class="text-base sm:text-lg font-normal text-[#001E40]">Stop sending messages asking if professors are
                                 in their offices. Professor Availability shows real-time status with a simple
                                 color-coded system that saves time for everyone.</h1>
                         </div>
