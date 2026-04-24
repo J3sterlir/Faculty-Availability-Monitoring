@@ -40,8 +40,8 @@
                                 in their offices. Professor Availability shows real-time status with a simple
                                 color-coded system that saves time for everyone.</h1>
                         </div>
-
                     </div>
+                    
                     <div class="w-auto max-h-fit justify-end flex flex-col">
                         <div class="m-6 sm:m-10 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full sm:w-fit h-fit row-span-1">
                             <NuxtLink to="/about"
@@ -57,9 +57,28 @@
                     <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163" alt="Hero Image"
                         class="w-full lg:w-[75%] h-64 sm:h-80 lg:h-full object-cover shadow-md" />
                 </div>
-
             </div>
 
+            
+
         </div>
+
+        <div class="border p-0 m-auto h-5 mt-6 mb-6 w-11/12 max-w-6xl sm:mt-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <div class="w-full">
+                    <div class="flex flex-col justify-center">
+                        <div class="mb-0 m-6 sm:m-10">
+                            <h1 class="text-3xl sm:text-4xl lg:text-6xl font-bold text-[#001E40] mb-3">Five colors tell you everything you need to know</h1>
+                            <h1 class="text-base sm:text-lg font-normal text-[#001E40]">Green means available now. Orange means busy but on campus. Blue is virtual only. Gray is on leave. Red is absent. No confusion, no guessing.</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-end lg:justify-end">
+                    <img src="https://images.unsplash.com/photo-1537202108838-e7072bad1927" alt="Hero Image"
+                        class="w-full lg:w-[75%] h-fit sm:h-fit lg:h-fit object-cover shadow-md" />
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
