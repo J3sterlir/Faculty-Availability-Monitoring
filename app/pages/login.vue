@@ -42,27 +42,3 @@
         </div>
     </div>
 </template>
-
-
-<!--
-<div class="grid grid-cols-2 grid-rows-1 m-60 w-[50%] h-[50%] border border-[#001E40]">
-                <div class="m-16">
-                    <form action="" class="flex flex-col justify-center h-full">
-                        <h1 class="mb-4 text-4xl font-bold text-[#001E40]">Login</h1>
-                        <div class="mb-4">
-                            <label for="email" class=" mb-2 text-sm font-medium text-gray-900">Email</label>
-                            <input type="email" id="email" name="email"
-                                class="border border-gray-300 rounded-md p-2 w-full">
-                        </div>
-                        <div class="mb-4">
-                            <label for="password" class=" mb-2 text-sm font-medium text-gray-900">Password</label>
-                            <input type="password" id="password" name="password"
-                                class="border border-gray-300 rounded-md p-2 w-full">
-                        </div>
-                    </form>
-                </div>
-                <div class="flex justify-center items-center row-span-1">
-                    <img src="../assets/img/4PIXART.jpg" alt="Hero Image" class="h-fit w-fit object-cover" />
-                </div>
-            </div>
--->
