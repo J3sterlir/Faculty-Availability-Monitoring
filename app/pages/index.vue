@@ -89,7 +89,9 @@ background: radial-gradient(circle, rgba(199, 205, 255, 1) 0%, rgba(255, 255, 25
                 <h4 class="text-[2.3rem] font-bold">Everything built in</h4>
                 <h3 class="font-light">The platform handles what matters most to students and professors alike.</h3>
             </div>
+            <div class="">
 
+            </div>
             <div class="flex flex-col justify-center items-center p-0 m-auto w-11/12 max-w-6xl sm:mt-10"
                 style="background: #c7cdff;
 background: radial-gradient(circle, rgba(199, 205, 255, 1) 0%, rgba(255, 255, 255, 1) 73%, rgba(255, 255, 255, 1) 100%);">

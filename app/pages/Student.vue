@@ -1,6 +1,6 @@
 <template>
-    <div class="font-(family-name:--font-dm-sans) bg-[#faf9ff] h-screen">
-        <nav class="bg-[#F0F2FE] flex flex-row p-6 pl-20 pr-20 justify-between">
+    <div class="font-(family-name:--font-dm-sans) bg-[#faf9ff] min-h-dvh">
+        <nav class="bg-[#F0F2FE] flex flex-row p-6 pl-20 pr-20 justify-between sticky top-0 z-10 shadow-md">
             <div class="flex flex-row gap-4 items-center">
                 <h6 class="font-bold text-lg">Faculty Availability Hub</h6>
                 <div class="h-full w-px bg-gray-400"></div>
@@ -27,7 +27,8 @@
                 </button>
             </div>
         </nav>
-        <div class="m-40 mt-20">
+
+        <div class="m-40 mt-20 mb-20">
             <div class="flex flex-row gap-20">
                 <div class="flex flex-col">
                     <h1 class="text-[#43474F] font-semibold">Department</h1>
@@ -52,18 +53,49 @@
                 <div class="flex flex-col">
                     <h1 class="text-[#43474F] font-semibold">Availability</h1>
                     <div class="mt-2 flex items-center gap-3">
-                        <button class="bg-[#F0F3FF] text-black font-semibold px-3 py-1.5 rounded-md hover:bg-[#001E40] hover:text-[#F0F3FF] focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                All
+                        <button
+                            class="bg-[#F0F3FF] text-black font-semibold px-3 py-1.5 rounded-md hover:bg-[#001E40] hover:text-[#F0F3FF] focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            All
                         </button>
-                        <button class="bg-[#F0F3FF] text-black font-semibold px-3 py-1.5 rounded-md hover:bg-[#001E40] hover:text-[#F0F3FF] focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                Available Now
+                        <button
+                            class="bg-[#F0F3FF] text-black font-semibold px-3 py-1.5 rounded-md hover:bg-[#001E40] hover:text-[#F0F3FF] focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            Available Now
                         </button>
                     </div>
-                    
                 </div>
 
             </div>
         </div>
 
+        <div class="flex flex-row m-40 mt-0 items-center">
+            <div class="grid grid-cols-4 grid-rows-2 gap-4 w-full">
+                <div class="bg-[#FFFFFF] p-5 rounded-xl flex flex-col gap-4 w-fit h-fit shadow-xl">
+                    <div class="">
+                        <img src="https://placehold.co/65" class="rounded-xl" alt="">
+                    </div>
+
+                    <div class="flex flex-col">
+                        <h1 class="font-bold">Professor Name</h1>
+                        <p class="text-[#43474F]/70 font-semibold">Department</p>
+                    </div>
+
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center p-2.5 py-1 bg-[#22C55E]/10 rounded-full w-max">
+                            <h1 class="text-[#22C55E] font-semibold">Available</h1>
+                        </div>
+                        <hr class="border-[#C3C6D1]/50">
+                        <div class="flex flex-row justify-between items-center gap-30">
+                            <div class="flex flex-row items-center gap-1">
+                                <Icon name="ic:sharp-access-time" class="h-5 w-5 text-[#737780]" />
+                                <p class="text-[0.8rem] text-[#737780]">5 mins ago</p>
+                            </div>
+                            <p class="text-[#003366] font-semibold">Note</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
