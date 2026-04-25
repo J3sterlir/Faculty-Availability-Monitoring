@@ -4,3 +4,9 @@
 :root {
   --font-dm-sans: "DM Sans", sans-serif; 
 }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: smooth !important; }
+}
