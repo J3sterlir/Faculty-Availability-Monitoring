@@ -81,9 +81,9 @@
             </div>
         </div>
         <section id="features" class="scroll-mt-10"></section>
-        <div class="h-fit p-11"
+        <div class="p-11"
             style="background: #c7cdff;
-background: radial-gradient(circle, rgba(199, 205, 255, 1) 0%, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 1) 100%);">
+            background: radial-gradient(circle, rgba(199, 205, 255, 1) 0%, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 1) 100%);">
             <div class="flex flex-col gap-3 justify-center items-center mb-6">
                 <h6 class="font-semibold">Features</h6>
                 <h4 class="text-[2.3rem] font-bold">Everything built in</h4>
@@ -94,7 +94,7 @@ background: radial-gradient(circle, rgba(199, 205, 255, 1) 0%, rgba(255, 255, 25
             </div>
             <div class="flex flex-col justify-center items-center p-0 m-auto w-11/12 max-w-6xl sm:mt-10"
                 style="background: #c7cdff;
-background: radial-gradient(circle, rgba(199, 205, 255, 1) 0%, rgba(255, 255, 255, 1) 73%, rgba(255, 255, 255, 1) 100%);">
+            background: radial-gradient(circle, rgba(199, 205, 255, 1) 0%, rgba(255, 255, 255, 1) 73%, rgba(255, 255, 255, 1) 100%);">
                 <div class="grid grid-cols-3 grid-rows-2 gap-5">
                     <div class="bg-white text-black row-span-2 flex flex-col border">
                         <div class="bg-white text-black mb-1">
@@ -144,8 +144,9 @@ background: radial-gradient(circle, rgba(199, 205, 255, 1) 0%, rgba(255, 255, 25
                 </div>
             </div>
         </div>
-
-        <footer class="bg-[#001E40] p-10 text-center text-white h-fit flex flex-col justify-between">
+    </div>
+    
+    <footer class="bg-[#001E40] p-10 text-center text-white h-fit flex flex-col justify-between">
             <div class="flex flex-row p-6 justify-between">
                 <div class="flex flex-col text-start gap-3">
                     <h1 class="font-bold text-lg mb-5">Faculty Availability Hub</h1>
@@ -186,5 +187,4 @@ background: radial-gradient(circle, rgba(199, 205, 255, 1) 0%, rgba(255, 255, 25
                 </div>
             </div>
         </footer>
-    </div>
 </template>

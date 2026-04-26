@@ -28,7 +28,7 @@
             </div>
         </nav>
 
-        <div class="m-40 mt-20 mb-20">
+        <div class="m-40 mt-20 mb-0">
             <div class="flex flex-row gap-20">
                 <div class="flex flex-col">
                     <h1 class="text-[#43474F] font-semibold">Department</h1>
@@ -67,33 +67,35 @@
             </div>
         </div>
 
-        <div class="flex flex-row m-40 mt-0 items-center">
-            <div class="grid grid-cols-4 grid-rows-2 gap-4 w-full">
-                <div class="bg-[#FFFFFF] p-5 rounded-xl flex flex-col gap-4 w-fit h-fit shadow-xl">
-                    <div class="">
-                        <img src="https://placehold.co/65" class="rounded-xl" alt="">
-                    </div>
-
-                    <div class="flex flex-col">
-                        <h1 class="font-bold">Professor Name</h1>
-                        <p class="text-[#43474F]/70 font-semibold">Department</p>
-                    </div>
-
-                    <div class="flex flex-col gap-4">
-                        <div class="flex items-center p-2.5 py-1 bg-[#22C55E]/10 rounded-full w-max">
-                            <h1 class="text-[#22C55E] font-semibold">Available</h1>
+        <div class="flex flex-row m-40 mt-20 mb-0 items-center">
+            <div class="pb-11">
+                <div class="flex flex-row flex-wrap gap-7 w-full justify-between">
+                    <div class="bg-[#FFFFFF] p-5 rounded-xl flex flex-col gap-4 w-fit h-fit shadow-xl">
+                        <div class="">
+                            <img src="https://placehold.co/65" class="rounded-xl" alt="">
                         </div>
-                        <hr class="border-[#C3C6D1]/50">
-                        <div class="flex flex-row justify-between items-center gap-30">
-                            <div class="flex flex-row items-center gap-1">
-                                <Icon name="ic:sharp-access-time" class="h-5 w-5 text-[#737780]" />
-                                <p class="text-[0.8rem] text-[#737780]">5 mins ago</p>
+
+                        <div class="flex flex-col">
+                            <h1 class="font-bold">Professor Name</h1>
+                            <p class="text-[#43474F]/70 font-semibold">Department</p>
+                        </div>
+
+                        <div class="flex flex-col gap-4">
+                            <div class="flex items-center p-2.5 py-1 bg-[#22C55E]/10 rounded-full w-max">
+                                <h1 class="text-[#22C55E] font-semibold">Available</h1>
                             </div>
-                            <p class="text-[#003366] font-semibold">Note</p>
+                            <hr class="border-[#C3C6D1]/50">
+                            <div class="flex flex-row justify-between items-center gap-30">
+                                <div class="flex flex-row items-center gap-1">
+                                    <Icon name="ic:sharp-access-time" class="h-5 w-5 text-[#737780]" />
+                                    <p class="text-[0.8rem] text-[#737780]">5 mins ago</p>
+                                </div>
+                                <p class="text-[#003366] font-semibold">Note</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div>
+                    <div>
+                    </div>
                 </div>
             </div>
         </div>
