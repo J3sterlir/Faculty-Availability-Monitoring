@@ -34,7 +34,7 @@
                     <h1 class="text-[#43474F] font-semibold">Department</h1>
                     <div class="relative w-[130%] mt-2">
                         <select
-                            class="block w-full appearance-none rounded bg-[#F0F3FF] text-[#151C27] px-4 py-2 pr-8 leading-tight focus:outline-none">
+                            class="block w-full appearance-none rounded bg-[#F0F3FF] text-[#151C27] px-4 py-2 pr-8 leading-tight cursor-pointer focus:outline-none">
                             <option selected>Department</option>
                             <option>Option 1</option>
                             <option>Option 2</option>
@@ -54,11 +54,11 @@
                     <h1 class="text-[#43474F] font-semibold">Availability</h1>
                     <div class="mt-2 flex items-center gap-3">
                         <button
-                            class="bg-[#F0F3FF] text-black font-semibold px-3 py-1.5 rounded-md hover:bg-[#001E40] hover:text-[#F0F3FF] focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            class="bg-[#F0F3FF] text-black font-semibold px-3 py-1.5 rounded-md hover:bg-[#001E40] hover:text-[#F0F3FF] focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer">
                             All
                         </button>
                         <button
-                            class="bg-[#F0F3FF] text-black font-semibold px-3 py-1.5 rounded-md hover:bg-[#001E40] hover:text-[#F0F3FF] focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            class="bg-[#F0F3FF] text-black font-semibold px-3 py-1.5 rounded-md hover:bg-[#001E40] hover:text-[#F0F3FF] focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer">
                             Available Now
                         </button>
                     </div>
@@ -100,4 +100,10 @@
             </div>
         </div>
     </div>
+    <footer class="bg-[#F0F2FE] z-10 bottom-0">
+        <div class="flex flex-row gap-4 items-center justify-center p-6">
+            <h6 class="font-bold text-sm text-[#151C27]/50">© 2026 Faculty Availability Hub. All rights reserved.
+            </h6>
+        </div>
+    </footer>
 </template>
