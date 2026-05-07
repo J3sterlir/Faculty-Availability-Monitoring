@@ -15,11 +15,10 @@
           <Icon name="material-symbols:search"
             class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#43474F]/60"
             aria-hidden="true" />
-          <input type="text" placeholder="Search professors..."
+          <input type="text" v-model="searchQuery" placeholder="Search professors..."
             class="bg-[#E2E8F8] text-[#151C27] placeholder:text-[#43474F]/50 pl-12 pr-20 p-0.5 border border-[#DCE2F3] rounded-full focus:outline-none focus:ring-2"
             aria-label="Search professors" />
         </div>
-        <!-- Removed account-circle and settings buttons -->
       </div>
     </nav>
 
@@ -29,13 +28,13 @@
         <div class="flex flex-col">
           <h1 class="text-[#43474F] font-semibold">Department</h1>
           <div class="relative w-[130%] mt-2">
-            <select
+            <select v-model="selectedDepartment"
               class="block w-full appearance-none rounded bg-[#F0F3FF] text-[#151C27] px-4 py-2 pr-8 leading-tight cursor-pointer focus:outline-none">
-              <option selected>All Departments</option>
-              <option>Computer Studies</option>
-              <option>Business & Tech</option>
-              <option>Engineering</option>
-              <option>Arts & Sciences</option>
+              <option value="All Departments">All Departments</option>
+              <option value="Computer Studies">Computer Studies</option>
+              <option value="Business & Tech">Business & Tech</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Arts & Sciences">Arts & Sciences</option>
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
@@ -49,12 +48,14 @@
         <div class="flex flex-col">
           <h1 class="text-[#43474F] font-semibold">Availability</h1>
           <div class="mt-2 flex items-center gap-3">
-            <button
-              class="bg-[#F0F3FF] text-black font-semibold px-3 py-1.5 rounded-md hover:bg-[#001E40] hover:text-[#F0F3FF] focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer">
+            <button @click="showAvailableOnly = false"
+              class="font-semibold px-3 py-1.5 rounded-md cursor-pointer transition"
+              :class="!showAvailableOnly ? 'bg-[#001E40] text-white' : 'bg-[#F0F3FF] text-black hover:bg-[#001E40] hover:text-white'">
               All
             </button>
-            <button
-              class="bg-[#F0F3FF] text-black font-semibold px-3 py-1.5 rounded-md hover:bg-[#001E40] hover:text-[#F0F3FF] focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer">
+            <button @click="showAvailableOnly = true"
+              class="font-semibold px-3 py-1.5 rounded-md cursor-pointer transition"
+              :class="showAvailableOnly ? 'bg-[#001E40] text-white' : 'bg-[#F0F3FF] text-black hover:bg-[#001E40] hover:text-white'">
               Available Now
             </button>
           </div>
@@ -62,11 +63,11 @@
       </div>
     </div>
 
-    <!-- Professor Cards Grid -->
+    <!-- Professor Cards Grid (filtered) -->
     <div class="flex flex-row m-40 mt-20 mb-0 items-start">
       <div class="pb-11 w-full">
         <div class="flex flex-row flex-wrap gap-7 w-full">
-          <div v-for="prof in professors" :key="prof.name"
+          <div v-for="prof in filteredProfessors" :key="prof.name"
             class="bg-[#FFFFFF] p-5 rounded-xl flex flex-col gap-4 w-64 shadow-xl transition-transform hover:scale-105">
             <div>
               <img :src="prof.avatar" class="rounded-xl w-16 h-16 object-cover" alt="">
@@ -89,6 +90,10 @@
               </div>
             </div>
           </div>
+          <!-- Empty state -->
+          <div v-if="filteredProfessors.length === 0" class="w-full text-center py-10 text-gray-500">
+            No professors match the selected filters.
+          </div>
         </div>
       </div>
     </div>
@@ -101,9 +106,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
-// Professor data with names: Martinez, Aguilar, Lastimosa, Garay, Singson
+// Professor data
 const professors = ref([
   {
     name: 'Joshua Martinez',
@@ -156,4 +161,35 @@ const professors = ref([
     avatar: 'https://placehold.co/65?text=KS'
   }
 ])
+
+// Filter states
+const searchQuery = ref('')
+const selectedDepartment = ref('All Departments')
+const showAvailableOnly = ref(false)
+
+// Computed filtered list
+const filteredProfessors = computed(() => {
+  let filtered = professors.value
+
+  // Filter by department (if not "All Departments")
+  if (selectedDepartment.value !== 'All Departments') {
+    filtered = filtered.filter(prof => prof.department === selectedDepartment.value)
+  }
+
+  // Filter by search query (name or department)
+  if (searchQuery.value.trim() !== '') {
+    const query = searchQuery.value.trim().toLowerCase()
+    filtered = filtered.filter(prof =>
+      prof.name.toLowerCase().includes(query) ||
+      prof.department.toLowerCase().includes(query)
+    )
+  }
+
+  // Filter by "Available Now"
+  if (showAvailableOnly.value) {
+    filtered = filtered.filter(prof => prof.status === 'Available')
+  }
+
+  return filtered
+})
 </script>
