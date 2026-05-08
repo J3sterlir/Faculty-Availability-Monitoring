@@ -67,8 +67,10 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '~/stores/auth'
 
 const router = useRouter()
+const authStore = useAuthStore()
 const isLoading = ref(false)
 const errorMessage = ref('')
 const rememberMe = ref(false)
@@ -97,6 +99,9 @@ const handleLogin = async () => {
 
         // Store JWT token
         if (data.value?.token) {
+            authStore.setToken(data.value.token)
+            authStore.setUser(data.value.user)
+            //for localStorage for persistence across refreshes
             localStorage.setItem('auth_token', data.value.token)
             localStorage.setItem('auth_user', JSON.stringify(data.value.user))
         }

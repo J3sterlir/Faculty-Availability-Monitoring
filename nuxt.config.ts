@@ -10,7 +10,8 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
-  modules: ['@nuxt/ui'],
+  modules: ['@nuxt/ui','@pinia/nuxt'],
+  
 
   runtimeConfig: {
     mongoUri: process.env.MONGO_URI || '',
