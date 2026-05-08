@@ -4,16 +4,42 @@
             class="bg-[#001E40] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10 border-t-0 border-l-0 border-r-0 border-b sticky top-0 z-50 backdrop-blur-xs">
             <div class="mx-auto w-auto px-2 sm:px-6 lg:px-8">
                 <div class="relative flex h-16 items-center justify-between">
-<<<<<<< Updated upstream
-                    <div class="absolute inset-y-0 right-0 flex items-center sm:hidden pr-2">
-                        <!-- Mobile login button -->
-                        <NuxtLink to="/login" class="bg-white px-3 py-2 text-sm font-semibold text-[#001E40]">
-<<<<<<< Updated upstream
-                            Faculty Log in
-=======
-                            Log in
-=======
-                    <div class="absolute inset-y-0 right-0 flex items-center gap-2 sm:hidden pr-2">
+
+                    <!-- Logo (left) -->
+                    <div class="flex shrink-0 items-center">
+                        <NuxtLink to="/" class="text-white font-bold text-lg tracking-tight">
+                            Faculty Availability Hub
+                        </NuxtLink>
+                    </div>
+
+                    <!-- Desktop nav (right) -->
+                    <div class="hidden sm:flex sm:items-center sm:gap-3">
+                        <NuxtLink to="/"
+                            class="px-4 py-2 rounded-full text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+                            active-class="bg-[#3D3BF3]">
+                            Home
+                        </NuxtLink>
+                        <NuxtLink to="#features"
+                            class="px-4 py-2 rounded-full text-sm font-semibold text-white hover:bg-white/10 transition-colors">
+                            Features
+                        </NuxtLink>
+                        <NuxtLink to="/about"
+                            class="px-4 py-2 rounded-full text-sm font-semibold text-white hover:bg-white/10 transition-colors">
+                            About
+                        </NuxtLink>
+                        <div class="w-px h-5 bg-white/20 mx-1"></div>
+                        <NuxtLink to="/login"
+                            class="bg-white px-3 py-2 text-sm font-semibold text-[#001E40] hover:bg-white/90 transition-colors">
+                            Faculty Login
+                        </NuxtLink>
+                        <NuxtLink to="/register"
+                            class="border border-white px-3 py-2 text-sm font-semibold text-white hover:bg-white hover:text-[#001E40]">
+                            Faculty Register
+                        </NuxtLink>
+                    </div>
+
+                    <!-- Mobile nav (right) -->
+                    <div class="flex items-center gap-2 sm:hidden">
                         <NuxtLink to="/"
                             class="p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -37,63 +63,15 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+                        </NuxtLink>
+                        <NuxtLink to="/register"
+                            class="border border-white px-3 py-2 text-sm font-semibold text-white hover:bg-white hover:text-[#001E40]">
+                            Faculty Register
                         </NuxtLink>
                     </div>
-                    <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
-                        <div class="flex shrink-0 items-center">
-                            <NuxtLink to="/" class="text-white font-bold text-lg tracking-tight">
-                                Faculty Availability Hub
-                            </NuxtLink>
-                        </div>
-<<<<<<< Updated upstream
-                        <div class="hidden sm:ml-6 sm:block">
-                            <div class="flex space-x-4">
-                                <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-                                <NuxtLink to="/login" class="bg-white px-3 py-2 text-sm font-semibold text-[#001E40]">
-                                    Faculty Log in
-                                </NuxtLink>
-                                <NuxtLink to="/register"
-                                    class="border border-white px-3 py-2 text-sm font-semibold text-white hover:bg-white hover:text-[#001E40]">
-                                    Faculty Register
-                                </NuxtLink>
-                            </div>
-=======
-                        <div class="hidden sm:ml-6 sm:flex sm:items-center sm:gap-3">
-                            <!-- Nav pills -->
-                            <NuxtLink to="/"
-                                class="px-4 py-2 rounded-full text-sm font-semibold text-white hover:bg-white/10 transition-colors"
-                                active-class="bg-[#3D3BF3] text-white">
-                                Home
-                            </NuxtLink>
-                            <NuxtLink to="#features"
-                                class="px-4 py-2 rounded-full text-sm font-semibold text-white hover:bg-white/10 transition-colors">
-                                Features
-                            </NuxtLink>
-                            <NuxtLink to="/about"
-                                class="px-4 py-2 rounded-full text-sm font-semibold text-white hover:bg-white/10 transition-colors">
-                                About
-                            </NuxtLink>
 
-                            <!-- Divider -->
-                            <div class="w-px h-5 bg-white/20 mx-1"></div>
-
-                            <!-- Faculty Login -->
-                            <NuxtLink to="/login"
-                                class="bg-white px-3 py-2 text-sm font-semibold text-[#001E40] hover:bg-white/90 transition-colors">
-                                Faculty Login
-                            </NuxtLink>
-                            <NuxtLink to="/register"
-                                class="border border-white px-3 py-2 text-sm font-semibold text-white hover:bg-white hover:text-[#001E40]">
-                                Register
-                            </NuxtLink>
->>>>>>> Stashed changes
-                        </div>
-                    </div>
                 </div>
             </div>
-
         </nav>
 
         <div class="border border-[#001E40] p-0 m-auto mt-6 w-11/12 max-w-6xl sm:mt-10">
