@@ -18,7 +18,8 @@
                             <label for="password" class=" mb-2 text-sm font-medium text-gray-900">Password</label>
                             <input type="password" id="password" name="password"
                                 class="border border-gray-300 bg-[#E2E8F8] rounded-md p-2 w-full mb-1">
-                            <a href="/login" class="text-sm text-[#001E40] hover:text-[#001E40]/90"><u>Forget password</u></a>
+                            <a href="/login" class="text-sm text-[#001E40] hover:text-[#001E40]/90"><u>Forget
+                                    password</u></a>
                         </div>
                         <div class="mb-4">
                             <label class="flex items-center text-sm">
@@ -33,6 +34,12 @@
                             </button>
                         </div>
                     </form>
+                    <p class="mt-5 text-sm text-center text-gray-500">
+                        Don't have an account?
+                        <NuxtLink to="/register" class="font-bold text-[#001E40] hover:text-[#001E40]/80">
+                            Register
+                        </NuxtLink>
+                    </p>
                 </div>
 
                 <div class="hidden md:flex items-stretch">
