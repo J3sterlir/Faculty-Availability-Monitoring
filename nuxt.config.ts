@@ -10,5 +10,12 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
-  modules: ['@nuxt/ui']
+  modules: ['@nuxt/ui'],
+
+  runtimeConfig: {
+    mongoUri: process.env.MONGO_URI || '',
+    jwtSecret: process.env.JWT_SECRET || 'change-me-in-production',
+    // Public config (exposed to the browser) — add keys here if needed
+    public: {},
+  },
 });
