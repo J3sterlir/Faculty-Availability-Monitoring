@@ -7,7 +7,7 @@
                     <div class="absolute inset-y-0 right-0 flex items-center sm:hidden pr-2">
                         <!-- Mobile login button -->
                         <NuxtLink to="/login" class="bg-white px-3 py-2 text-sm font-semibold text-[#001E40]">
-                            Log in
+                            Faculty Log in
                         </NuxtLink>
                     </div>
                     <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-end">
@@ -18,7 +18,11 @@
                             <div class="flex space-x-4">
                                 <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
                                 <NuxtLink to="/login" class="bg-white px-3 py-2 text-sm font-semibold text-[#001E40]">
-                                    Log in
+                                    Faculty Log in
+                                </NuxtLink>
+                                <NuxtLink to="/register"
+                                    class="border border-white px-3 py-2 text-sm font-semibold text-white hover:bg-white hover:text-[#001E40]">
+                                    Faculty Register
                                 </NuxtLink>
                             </div>
                         </div>
@@ -45,9 +49,9 @@
 
                     <div class="w-auto max-h-fit justify-end flex flex-col">
                         <div class="m-6 sm:m-10 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full sm:w-fit h-fit row-span-1">
-                            <NuxtLink to="/"
+                            <NuxtLink to="/Student"
                                 class="border row-span-1 text-center text-white bg-[#001E40] p-4 hover:text-black hover:bg-white">
-                                View Dashboard</NuxtLink>
+                                View Availability Board</NuxtLink>
                             <a href="#features"
                                 class="border row-span-1 text-center text-[#001E40] bg-white p-4 hover:text-blue-700">
                                 Learn More</a>
@@ -145,46 +149,46 @@
             </div>
         </div>
     </div>
-    
-    <footer class="bg-[#001E40] p-10 text-center text-white h-fit flex flex-col justify-between">
-            <div class="flex flex-row p-6 justify-between">
-                <div class="flex flex-col text-start gap-3">
-                    <h1 class="font-bold text-lg mb-5">Faculty Availability Hub</h1>
-                    <p class="text-sm text-gray-300 font-bold">Address</p>
-                    <p class="text-sm text-gray-300 mb-5">Ateneo Ave, Naga City, 4400 Camarines Sur</p>
-                    <p class="text-sm text-gray-300 font-bold">Email</p>
-                    <p class="text-sm text-gray-300">info@facultyavailabilityhub.edu</p>
-                </div>
 
-                <div class="flex flex-col text-end gap-3">
-                    <div class="grid grid-cols-2 gap-10">
-                        <div class="flex flex-col text-start gap-3">
-                            <h1 class="font-bold text-lg mb-2">Quick Links</h1>
-                            <NuxtLink to="#" class="text-sm text-gray-300 hover:text-white">Home</NuxtLink>
-                            <NuxtLink to="#login" class="text-sm text-gray-300 hover:text-white">Login</NuxtLink>
-                            <NuxtLink to="#" class="text-sm text-gray-300 hover:text-white">Dashboard</NuxtLink>
-                        </div>
-                        <div class="flex flex-col text-start gap-3">
-                            <h1 class="font-bold text-lg mb-2 grow"></h1>
-                            <NuxtLink to="#" class="text-sm text-gray-300 hover:text-white">Link1</NuxtLink>
-                            <NuxtLink to="#" class="text-sm text-gray-300 hover:text-white">Link2</NuxtLink>
-                            <NuxtLink to="#" class="text-sm text-gray-300 hover:text-white">Link3</NuxtLink>
-                        </div>
+    <footer class="bg-[#001E40] p-10 text-center text-white h-fit flex flex-col justify-between">
+        <div class="flex flex-row p-6 justify-between">
+            <div class="flex flex-col text-start gap-3">
+                <h1 class="font-bold text-lg mb-5">Faculty Availability Hub</h1>
+                <p class="text-sm text-gray-300 font-bold">Address</p>
+                <p class="text-sm text-gray-300 mb-5">Ateneo Ave, Naga City, 4400 Camarines Sur</p>
+                <p class="text-sm text-gray-300 font-bold">Email</p>
+                <p class="text-sm text-gray-300">info@facultyavailabilityhub.edu</p>
+            </div>
+
+            <div class="flex flex-col text-end gap-3">
+                <div class="grid grid-cols-2 gap-10">
+                    <div class="flex flex-col text-start gap-3">
+                        <h1 class="font-bold text-lg mb-2">Quick Links</h1>
+                        <NuxtLink to="#" class="text-sm text-gray-300 hover:text-white">Home</NuxtLink>
+                        <NuxtLink to="#login" class="text-sm text-gray-300 hover:text-white">Login</NuxtLink>
+                        <NuxtLink to="#" class="text-sm text-gray-300 hover:text-white">Dashboard</NuxtLink>
+                    </div>
+                    <div class="flex flex-col text-start gap-3">
+                        <h1 class="font-bold text-lg mb-2 grow"></h1>
+                        <NuxtLink to="#" class="text-sm text-gray-300 hover:text-white">Link1</NuxtLink>
+                        <NuxtLink to="#" class="text-sm text-gray-300 hover:text-white">Link2</NuxtLink>
+                        <NuxtLink to="#" class="text-sm text-gray-300 hover:text-white">Link3</NuxtLink>
                     </div>
                 </div>
             </div>
-            <hr class="m-1 mt-5">
-            <div class="flex flex-row justify-between mt-10">
-                <h1 class="text-md text-start text-gray-300 mb-2"> &copy; 2026 Faculty Availability Hub. All rights
-                    reserved.</h1>
-                <div class="flex flex-row gap-7">
-                    <a href="#" class="text-md text-start text-gray-300 hover:text-white mb-2 underline">Privacy
-                        Policy</a>
-                    <a href="#" class="text-md text-start text-gray-300 hover:text-white mb-2 underline">Terms of
-                        Service</a>
-                    <a href="#" class="text-md text-start text-gray-300 hover:text-white mb-2 underline">Cookies
-                        Settings</a>
-                </div>
+        </div>
+        <hr class="m-1 mt-5">
+        <div class="flex flex-row justify-between mt-10">
+            <h1 class="text-md text-start text-gray-300 mb-2"> &copy; 2026 Faculty Availability Hub. All rights
+                reserved.</h1>
+            <div class="flex flex-row gap-7">
+                <a href="#" class="text-md text-start text-gray-300 hover:text-white mb-2 underline">Privacy
+                    Policy</a>
+                <a href="#" class="text-md text-start text-gray-300 hover:text-white mb-2 underline">Terms of
+                    Service</a>
+                <a href="#" class="text-md text-start text-gray-300 hover:text-white mb-2 underline">Cookies
+                    Settings</a>
             </div>
-        </footer>
+        </div>
+    </footer>
 </template>
