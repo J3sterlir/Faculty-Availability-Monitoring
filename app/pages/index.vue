@@ -4,16 +4,50 @@
             class="bg-[#001E40] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10 border-t-0 border-l-0 border-r-0 border-b sticky top-0 z-50 backdrop-blur-xs">
             <div class="mx-auto w-auto px-2 sm:px-6 lg:px-8">
                 <div class="relative flex h-16 items-center justify-between">
+<<<<<<< Updated upstream
                     <div class="absolute inset-y-0 right-0 flex items-center sm:hidden pr-2">
                         <!-- Mobile login button -->
                         <NuxtLink to="/login" class="bg-white px-3 py-2 text-sm font-semibold text-[#001E40]">
+<<<<<<< Updated upstream
                             Faculty Log in
+=======
+                            Log in
+=======
+                    <div class="absolute inset-y-0 right-0 flex items-center gap-2 sm:hidden pr-2">
+                        <NuxtLink to="/"
+                            class="p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                        </NuxtLink>
+                        <NuxtLink to="#features"
+                            class="p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                            </svg>
+                        </NuxtLink>
+                        <NuxtLink to="/login"
+                            class="p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
                         </NuxtLink>
                     </div>
-                    <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-end">
+                    <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
                         <div class="flex shrink-0 items-center">
-                            <!--<img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="h-8 w-auto" />-->
+                            <NuxtLink to="/" class="text-white font-bold text-lg tracking-tight">
+                                Faculty Availability Hub
+                            </NuxtLink>
                         </div>
+<<<<<<< Updated upstream
                         <div class="hidden sm:ml-6 sm:block">
                             <div class="flex space-x-4">
                                 <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
@@ -25,6 +59,36 @@
                                     Faculty Register
                                 </NuxtLink>
                             </div>
+=======
+                        <div class="hidden sm:ml-6 sm:flex sm:items-center sm:gap-3">
+                            <!-- Nav pills -->
+                            <NuxtLink to="/"
+                                class="px-4 py-2 rounded-full text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+                                active-class="bg-[#3D3BF3] text-white">
+                                Home
+                            </NuxtLink>
+                            <NuxtLink to="#features"
+                                class="px-4 py-2 rounded-full text-sm font-semibold text-white hover:bg-white/10 transition-colors">
+                                Features
+                            </NuxtLink>
+                            <NuxtLink to="/about"
+                                class="px-4 py-2 rounded-full text-sm font-semibold text-white hover:bg-white/10 transition-colors">
+                                About
+                            </NuxtLink>
+
+                            <!-- Divider -->
+                            <div class="w-px h-5 bg-white/20 mx-1"></div>
+
+                            <!-- Faculty Login -->
+                            <NuxtLink to="/login"
+                                class="bg-white px-3 py-2 text-sm font-semibold text-[#001E40] hover:bg-white/90 transition-colors">
+                                Faculty Login
+                            </NuxtLink>
+                            <NuxtLink to="/register"
+                                class="border border-white px-3 py-2 text-sm font-semibold text-white hover:bg-white hover:text-[#001E40]">
+                                Register
+                            </NuxtLink>
+>>>>>>> Stashed changes
                         </div>
                     </div>
                 </div>
@@ -39,7 +103,7 @@
                         <div class="mb-0 m-6 sm:m-10">
                             <h1 class="text-3xl sm:text-4xl lg:text-6xl font-bold text-[#001E40] mb-3">Know when your
                                 professor is actually
-                                available</h1>
+                                available with FacHub</h1>
                             <h1 class="text-base sm:text-lg font-normal text-[#001E40]">Stop sending messages asking if
                                 professors are
                                 in their offices. Professor Availability shows real-time status with a simple
