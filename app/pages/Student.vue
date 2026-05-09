@@ -30,11 +30,7 @@
           <div class="relative w-[130%] mt-2">
             <select v-model="selectedDepartment"
               class="block w-full appearance-none rounded bg-[#F0F3FF] text-[#151C27] px-4 py-2 pr-8 leading-tight cursor-pointer focus:outline-none">
-              <option value="All Departments">All Departments</option>
-              <option value="Computer Studies">Computer Studies</option>
-              <option value="Business & Tech">Business & Tech</option>
-              <option value="Engineering">Engineering</option>
-              <option value="Arts & Sciences">Arts & Sciences</option>
+              <option v-for="dep in departments" :key="dep" :value="dep">{{ dep }}</option>
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
@@ -67,26 +63,29 @@
     <div class="flex flex-row m-40 mt-20 mb-0 items-start">
       <div class="pb-11 w-full">
         <div class="flex flex-row flex-wrap gap-7 w-full">
-          <div v-for="prof in filteredProfessors" :key="prof.name"
+          <div v-for="prof in filteredProfessors" :key="prof._id"
             class="bg-[#FFFFFF] p-5 rounded-xl flex flex-col gap-4 w-64 shadow-xl transition-transform hover:scale-105">
             <div>
-              <img :src="prof.avatar" class="rounded-xl w-16 h-16 object-cover" alt="">
+              <img :src="avatarUrl(prof)" class="rounded-xl w-16 h-16 object-cover" alt="" />
             </div>
             <div class="flex flex-col">
               <h1 class="font-bold text-lg">{{ prof.name }}</h1>
               <p class="text-[#43474F]/70 font-semibold">{{ prof.department }}</p>
             </div>
             <div class="flex flex-col gap-4">
-              <div class="flex items-center p-2.5 py-1 rounded-full w-max" :class="prof.badgeClass">
-                <h1 class="font-semibold" :class="prof.textClass">{{ prof.status }}</h1>
+              <div class="flex items-center p-2.5 py-1 rounded-full w-max"
+                :class="statusBadgeMap[prof.status] || 'bg-gray-100'">
+                <h1 class="font-semibold" :class="statusTextMap[prof.status] || 'text-gray-500'">
+                  {{ statusLabelMap[prof.status] || prof.status }}
+                </h1>
               </div>
               <hr class="border-[#C3C6D1]/50">
               <div class="flex flex-row justify-between items-center">
                 <div class="flex flex-row items-center gap-1">
                   <Icon name="ic:sharp-access-time" class="h-5 w-5 text-[#737780]" />
-                  <p class="text-[0.8rem] text-[#737780]">{{ prof.lastSeen }}</p>
+                  <p class="text-[0.8rem] text-[#737780]">{{ timeAgo(prof.statusUpdatedAt) }}</p>
                 </div>
-                <p class="text-[#003366] font-semibold text-sm">{{ prof.note }}</p>
+                <p class="text-[#003366] font-semibold text-sm">{{ prof.officeLocation || '—' }}</p>
               </div>
             </div>
           </div>
@@ -106,90 +105,89 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
-// Professor data
-const professors = ref([
-  {
-    name: 'Joshua Martinez',
-    department: 'Computer Studies',
-    status: 'Available',
-    badgeClass: 'bg-[#22C55E]/10',
-    textClass: 'text-[#22C55E]',
-    lastSeen: 'Just now',
-    note: 'RM 402',
-    avatar: 'https://placehold.co/65?text=JM'
-  },
-  {
-    name: 'Ma. Theresa Aguilar',
-    department: 'Arts & Sciences',
-    status: 'Busy',
-    badgeClass: 'bg-[#F97316]/10',
-    textClass: 'text-[#F97316]',
-    lastSeen: '2 mins ago',
-    note: 'In meeting',
-    avatar: 'https://placehold.co/65?text=MA'
-  },
-  {
-    name: 'Ian Lastimosa',
-    department: 'Engineering',
-    status: 'Virtual only',
-    badgeClass: 'bg-[#3B82F6]/10',
-    textClass: 'text-[#3B82F6]',
-    lastSeen: '45 mins ago',
-    note: 'Zoom link',
-    avatar: 'https://placehold.co/65?text=IL'
-  },
-  {
-    name: 'Raphael Garay',
-    department: 'Engineering',
-    status: 'On leave',
-    badgeClass: 'bg-[#6B7280]/10',
-    textClass: 'text-[#6B7280]',
-    lastSeen: 'Oct 20-24',
-    note: 'Boracay',
-    avatar: 'https://placehold.co/65?text=RG'
-  },
-  {
-    name: 'Kevin Singson',
-    department: 'Computer Studies',
-    status: 'Absent',
-    badgeClass: 'bg-[#EF4444]/10',
-    textClass: 'text-[#EF4444]',
-    lastSeen: '1 hour ago',
-    note: 'Sick leave',
-    avatar: 'https://placehold.co/65?text=KS'
-  }
-])
-
-// Filter states
+const professors = ref([])
 const searchQuery = ref('')
 const selectedDepartment = ref('All Departments')
 const showAvailableOnly = ref(false)
 
-// Computed filtered list
-const filteredProfessors = computed(() => {
-  let filtered = professors.value
+// Status display maps
+const statusLabelMap = {
+  available: 'Available',
+  busy: 'Busy',
+  virtual_only: 'Virtual only',
+  on_leave: 'On leave',
+  absent: 'Absent',
+}
 
-  // Filter by department (if not "All Departments")
+const statusBadgeMap = {
+  available: 'bg-[#22C55E]/10',
+  busy: 'bg-[#F97316]/10',
+  virtual_only: 'bg-[#3B82F6]/10',
+  on_leave: 'bg-[#6B7280]/10',
+  absent: 'bg-[#EF4444]/10',
+}
+
+const statusTextMap = {
+  available: 'text-[#22C55E]',
+  busy: 'text-[#F97316]',
+  virtual_only: 'text-[#3B82F6]',
+  on_leave: 'text-[#6B7280]',
+  absent: 'text-[#EF4444]',
+}
+
+// Format time since last update
+function timeAgo(date) {
+  if (!date) return 'Unknown'
+  const diff = Math.floor((Date.now() - new Date(date)) / 1000)
+  if (diff < 60) return 'Just now'
+  if (diff < 3600) return `${Math.floor(diff / 60)} mins ago`
+  if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`
+  return new Date(date).toLocaleDateString()
+}
+
+// Avatar initials fallback
+function avatarUrl(prof) {
+  if (prof.profilePhoto) return prof.profilePhoto
+  const initials = prof.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
+  return `https://placehold.co/65?text=${initials}`
+}
+
+// Unique departments from fetched data
+const departments = computed(() => {
+  const deps = [...new Set(professors.value.map(p => p.department))].filter(Boolean).sort()
+  return ['All Departments', ...deps]
+})
+
+const filteredProfessors = computed(() => {
+  let list = professors.value
+
   if (selectedDepartment.value !== 'All Departments') {
-    filtered = filtered.filter(prof => prof.department === selectedDepartment.value)
+    list = list.filter(p => p.department === selectedDepartment.value)
   }
 
-  // Filter by search query (name or department)
-  if (searchQuery.value.trim() !== '') {
-    const query = searchQuery.value.trim().toLowerCase()
-    filtered = filtered.filter(prof =>
-      prof.name.toLowerCase().includes(query) ||
-      prof.department.toLowerCase().includes(query)
+  if (searchQuery.value.trim()) {
+    const q = searchQuery.value.trim().toLowerCase()
+    list = list.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.department.toLowerCase().includes(q)
     )
   }
 
-  // Filter by "Available Now"
   if (showAvailableOnly.value) {
-    filtered = filtered.filter(prof => prof.status === 'Available')
+    list = list.filter(p => p.status === 'available')
   }
 
-  return filtered
+  return list
+})
+
+onMounted(async () => {
+  try {
+    const res = await $fetch('/api/professors')
+    professors.value = res.professors
+  } catch (err) {
+    console.error('Failed to fetch professors:', err)
+  }
 })
 </script>
