@@ -20,22 +20,39 @@
                     <Icon name="material-symbols:account-circle" class="h-6 w-6" />
                 </button>
 
-                <!-- Settings Icon (opens same popup) -->
-                <button @click="openPopup" class="text-[#151C27]/50 hover:text-[#151C27] flex flex-row items-center">
-                    <Icon name="ic:baseline-settings" class="h-6 w-6" />
+                <!-- Logout button -->
+                <button @click="logout" class="text-[#151C27]/50 hover:text-[#151C27] flex flex-row items-center">
+                    <Icon name="ic:baseline-logout" class="h-6 w-6" />
                 </button>
             </div>
         </nav>
 
         <!-- Welcome section -->
+        <!-- Welcome section -->
         <div class="flex flex-row m-30 mb-0 mt-8 justify-center sm:justify-start sm:mt-30">
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-2 flex-1">
                 <h1 class="text-4xl">Welcome Back, <span class="font-semibold">{{ professor.firstName }}</span></h1>
                 <p class="text-base">Manage your visibility and academic presence across the campus network.</p>
             </div>
+            <!-- Live View Status -->
+            <div
+                class="hidden sm:flex flex-col items-end justify-center gap-1 bg-white rounded-xl shadow-sm px-5 py-3 border border-gray-100">
+                <div
+                    class="flex flex-row items-center gap-2 text-xs text-gray-400 font-semibold tracking-wide uppercase">
+                    <Icon name="material-symbols:wifi" class="h-4 w-4" />
+                    Live View Status
+                </div>
+                <span class="font-bold text-base" :class="{
+                    'text-[#1B6D24]': selectedStatus === 'available',
+                    'text-[#BA1A1A]': selectedStatus === 'busy',
+                    'text-blue-600': selectedStatus === 'virtual_only',
+                    'text-yellow-600': selectedStatus === 'on_leave',
+                    'text-gray-500': selectedStatus === 'absent',
+                }">{{ statusLabel }}</span>
+            </div>
         </div>
 
-        <!-- Status Cards (purely visual – no click handlers) -->
+        <!-- Status Cards -->
         <div class="p-1 md:pt-0 sm:p-11">
             <div
                 class="flex flex-col m-3 mt-3 bg-white rounded-xl shadow-md h-full lg:p-10 md:p-5 md:pl-0 md:pr-0 sm:m-30 sm:mt-15 sm:pl-10 sm:pr-10">
@@ -45,31 +62,62 @@
                 </div>
                 <div
                     class="flex flex-row flex-wrap gap-5 justify-center items-stretch p-10 pl-5 pr-5 sm:justify-between sm:pl-20 sm:pr-20">
-                    <div
-                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border border-[#1B6D24] bg-[#1B6D24]/10 p-4 text-center sm:min-h-35">
-                        <Icon name="ic:baseline-check-circle-outline" class="h-10 w-10" />
-                        <h1>Available</h1>
+
+                    <!-- Available -->
+                    <div @click="selectedStatus = 'available'"
+                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border p-4 text-center cursor-pointer transition-all duration-200"
+                        :class="selectedStatus === 'available'
+                            ? 'border-[#1B6D24] bg-[#1B6D24]/10 text-[#1B6D24] scale-105 shadow-md'
+                            : 'border-gray-200 bg-gray-50 text-gray-400 scale-95'">
+                        <Icon name="ic:baseline-check-circle-outline"
+                            :class="selectedStatus === 'available' ? 'h-12 w-12' : 'h-9 w-9'" />
+                        <h1 :class="selectedStatus === 'available' ? 'font-bold text-base' : 'text-sm'">Available</h1>
                     </div>
-                    <div
-                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border border-[#BA1A1A] bg-[#BA1A1A]/10 p-4 text-center sm:min-h-35">
-                        <Icon name="ic:baseline-block" class="h-10 w-10" />
-                        <h1>Busy</h1>
+
+                    <!-- Busy -->
+                    <div @click="selectedStatus = 'busy'"
+                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border p-4 text-center cursor-pointer transition-all duration-200"
+                        :class="selectedStatus === 'busy'
+                            ? 'border-[#BA1A1A] bg-[#BA1A1A]/10 text-[#BA1A1A] scale-105 shadow-md'
+                            : 'border-gray-200 bg-gray-50 text-gray-400 scale-95'">
+                        <Icon name="ic:baseline-block" :class="selectedStatus === 'busy' ? 'h-12 w-12' : 'h-9 w-9'" />
+                        <h1 :class="selectedStatus === 'busy' ? 'font-bold text-base' : 'text-sm'">Busy</h1>
                     </div>
-                    <div
-                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border border-[#DCE2F3] bg-[#E2E8F8] p-4 text-center sm:min-h-35">
-                        <Icon name="ic:outline-video-chat" class="h-10 w-10" />
-                        <h1>Virtual only</h1>
+
+                    <!-- Virtual Only -->
+                    <div @click="selectedStatus = 'virtual_only'"
+                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border p-4 text-center cursor-pointer transition-all duration-200"
+                        :class="selectedStatus === 'virtual_only'
+                            ? 'border-blue-500 bg-blue-500/10 text-blue-600 scale-105 shadow-md'
+                            : 'border-gray-200 bg-gray-50 text-gray-400 scale-95'">
+                        <Icon name="ic:outline-video-chat"
+                            :class="selectedStatus === 'virtual_only' ? 'h-12 w-12' : 'h-9 w-9'" />
+                        <h1 :class="selectedStatus === 'virtual_only' ? 'font-bold text-base' : 'text-sm'">Virtual Only
+                        </h1>
                     </div>
-                    <div
-                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border border-[#DCE2F3] bg-[#E2E8F8] p-4 text-center sm:min-h-35">
-                        <Icon name="ic:baseline-flight-takeoff" class="h-10 w-10" />
-                        <h1>On Leave</h1>
+
+                    <!-- On Leave -->
+                    <div @click="selectedStatus = 'on_leave'"
+                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border p-4 text-center cursor-pointer transition-all duration-200"
+                        :class="selectedStatus === 'on_leave'
+                            ? 'border-yellow-500 bg-yellow-500/10 text-yellow-600 scale-105 shadow-md'
+                            : 'border-gray-200 bg-gray-50 text-gray-400 scale-95'">
+                        <Icon name="ic:baseline-flight-takeoff"
+                            :class="selectedStatus === 'on_leave' ? 'h-12 w-12' : 'h-9 w-9'" />
+                        <h1 :class="selectedStatus === 'on_leave' ? 'font-bold text-base' : 'text-sm'">On Leave</h1>
                     </div>
-                    <div
-                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border border-[#DCE2F3] bg-[#E2E8F8] p-4 text-center sm:min-h-35">
-                        <Icon name="ic:baseline-event-busy" class="h-10 w-10" />
-                        <h1>Absent</h1>
+
+                    <!-- Absent -->
+                    <div @click="selectedStatus = 'absent'"
+                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border p-4 text-center cursor-pointer transition-all duration-200"
+                        :class="selectedStatus === 'absent'
+                            ? 'border-gray-500 bg-gray-500/10 text-gray-600 scale-105 shadow-md'
+                            : 'border-gray-200 bg-gray-50 text-gray-400 scale-95'">
+                        <Icon name="ic:baseline-event-busy"
+                            :class="selectedStatus === 'absent' ? 'h-12 w-12' : 'h-9 w-9'" />
+                        <h1 :class="selectedStatus === 'absent' ? 'font-bold text-base' : 'text-sm'">Absent</h1>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -121,8 +169,22 @@ const professor = computed(() => ({
     firstName: authStore.user?.name?.split(' ')[0] || 'Faculty',
     email: authStore.user?.email || '—',
     department: authStore.user?.department || '—',
-    room: authStore.user?.officeLocation || '—'
+    room: authStore.user?.officeLocation || '—',
+    status: authStore.user?.status || 'available',
 }))
+
+const selectedStatus = ref(authStore.user?.status || 'available')
+
+const statusLabel = computed(() => {
+    const map = {
+        available: 'Available',
+        busy: 'Busy',
+        virtual_only: 'Virtual Only',
+        on_leave: 'On Leave',
+        absent: 'Absent',
+    }
+    return map[authStore.user?.status] || 'Available'
+})
 
 const openPopup = () => {
     popupVisible.value = true
