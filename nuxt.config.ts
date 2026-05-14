@@ -19,4 +19,7 @@ export default defineNuxtConfig({
     // Public config (exposed to the browser) — add keys here if needed
     public: {},
   },
+  nitro: {
+    plugins: ['./plugins/mongodb.ts']
+  },
 });
