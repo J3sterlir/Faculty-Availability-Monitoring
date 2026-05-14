@@ -7,6 +7,9 @@ export const useAuthStore = defineStore('auth', {
       email: string
       department: string
       officeLocation: string
+      status: string
+      statusNote: string
+      statusUpdatedAt: string
     } | null,
     token: null as string | null
   }),
