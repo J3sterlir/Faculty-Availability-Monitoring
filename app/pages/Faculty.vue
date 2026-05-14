@@ -122,6 +122,30 @@
             </div>
         </div>
 
+        <!-- Status Note and Update Button -->
+        <div class="p-1 md:pt-0 sm:p-11">
+            <div class="flex flex-col m-3 mt-3 bg-white rounded-xl shadow-md lg:p-10 md:p-5 sm:m-30 sm:mt-15 sm:pl-10 sm:pr-10">
+                <div class="flex flex-col gap-4">
+                    <h1 class="text-xl font-bold">Add a note (optional)</h1>
+                    <textarea
+                        v-model="statusNote"
+                        placeholder="Add a note about your status..."
+                        class="w-full p-3 border border-gray-300 rounded-lg resize-none"
+                        rows="3"
+                        maxlength="200"
+                    ></textarea>
+                    <div class="flex justify-end">
+                        <button
+                            @click="updateStatus"
+                            class="bg-[#1B6D24] text-white px-6 py-2 rounded-lg hover:bg-[#145a1e] transition"
+                        >
+                            Update Status
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Popup Modal -->
         <div v-if="popupVisible" class="fixed inset-0 flex items-center justify-center z-50 bg-black/50"
             @click.self="closePopup">
@@ -174,6 +198,7 @@ const professor = computed(() => ({
 }))
 
 const selectedStatus = ref(authStore.user?.status || 'available')
+const statusNote = ref(authStore.user?.statusNote || '')
 
 const statusLabel = computed(() => {
     const map = {
@@ -183,7 +208,7 @@ const statusLabel = computed(() => {
         on_leave: 'On Leave',
         absent: 'Absent',
     }
-    return map[authStore.user?.status] || 'Available'
+    return map[selectedStatus.value] || 'Available'
 })
 
 const openPopup = () => {
@@ -197,5 +222,43 @@ const closePopup = () => {
 const logout = () => {
     authStore.logout()
     router.push('/login')
+}
+
+const updateStatus = async () => {
+    try {
+        const token = localStorage.getItem('auth_token')
+        if (!token) {
+            alert('Not authenticated')
+            return
+        }
+
+        const response = await $fetch('/api/user/status', {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: {
+                status: selectedStatus.value,
+                statusNote: statusNote.value
+            }
+        })
+
+        if (response.success) {
+            // Update the store
+            authStore.setUser({
+                ...authStore.user,
+                status: selectedStatus.value,
+                statusNote: statusNote.value,
+                statusUpdatedAt: response.user.statusUpdatedAt
+            })
+            alert('Status updated successfully!')
+        } else {
+            alert('Failed to update status')
+        }
+    } catch (error) {
+        console.error('Error updating status:', error)
+        alert('Error updating status')
+    }
 }
 </script>
