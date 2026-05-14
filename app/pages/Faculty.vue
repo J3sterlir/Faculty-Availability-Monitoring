@@ -117,30 +117,37 @@
                             :class="selectedStatus === 'absent' ? 'h-12 w-12' : 'h-9 w-9'" />
                         <h1 :class="selectedStatus === 'absent' ? 'font-bold text-base' : 'text-sm'">Absent</h1>
                     </div>
+                    <!-- Status Note + Update Button -->
+                    <div class="flex flex-col gap-4 px-5 pb-8 sm:px-20">
+                        <div class="flex flex-col gap-1">
+                            <label class="text-sm font-semibold text-gray-600">
+                                Optional Note
+                            </label>
+                            <textarea v-model="statusNote" maxlength="200" rows="3"
+                                placeholder="e.g. Available after 2pm, check email first..." class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm
+             text-gray-700 resize-none focus:outline-none focus:ring-2
+             focus:ring-[#1B6D24]/40 transition" />
+                            <span class="text-xs text-gray-400 text-right">
+                                {{ statusNote.length }}/200
+                            </span>
+                        </div>
 
-                </div>
-            </div>
-        </div>
-
-        <!-- Status Note and Update Button -->
-        <div class="p-1 md:pt-0 sm:p-11">
-            <div class="flex flex-col m-3 mt-3 bg-white rounded-xl shadow-md lg:p-10 md:p-5 sm:m-30 sm:mt-15 sm:pl-10 sm:pr-10">
-                <div class="flex flex-col gap-4">
-                    <h1 class="text-xl font-bold">Add a note (optional)</h1>
-                    <textarea
-                        v-model="statusNote"
-                        placeholder="Add a note about your status..."
-                        class="w-full p-3 border border-gray-300 rounded-lg resize-none"
-                        rows="3"
-                        maxlength="200"
-                    ></textarea>
-                    <div class="flex justify-end">
-                        <button
-                            @click="updateStatus"
-                            class="bg-[#1B6D24] text-white px-6 py-2 rounded-lg hover:bg-[#145a1e] transition"
-                        >
-                            Update Status
+                        <button @click="updateStatus" :disabled="isUpdating" class="self-end flex items-center gap-2 rounded-xl px-6 py-3 text-sm
+           font-semibold text-white transition-all duration-200
+           bg-[#1B6D24] hover:bg-[#155720] disabled:opacity-50
+           disabled:cursor-not-allowed shadow-sm hover:shadow-md">
+                            <Icon :name="isUpdating
+                                ? 'ic:baseline-hourglass-empty'
+                                : 'ic:baseline-check'" class="h-4 w-4" :class="{ 'animate-spin': isUpdating }" />
+                            {{ isUpdating ? 'Updating...' : 'Update Status' }}
                         </button>
+
+                        <!-- Feedback message -->
+                        <p v-if="updateMessage" class="text-sm font-medium" :class="updateMessage.includes('successfully')
+                            ? 'text-[#1B6D24]'
+                            : 'text-red-600'">
+                            {{ updateMessage }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -198,7 +205,40 @@ const professor = computed(() => ({
 }))
 
 const selectedStatus = ref(authStore.user?.status || 'available')
+
+// Add below selectedStatus ref
 const statusNote = ref(authStore.user?.statusNote || '')
+const isUpdating = ref(false)
+const updateMessage = ref('')
+
+const updateStatus = async () => {
+    isUpdating.value = true
+    updateMessage.value = ''
+
+    const token = authStore.token
+
+    try {
+        const data = await $fetch('/api/user/status', {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            body: {
+                status: selectedStatus.value,
+                statusNote: statusNote.value,
+            },
+        })
+
+        // Sync the store with the updated user
+        authStore.user = data.user
+        updateMessage.value = 'Status updated successfully!'
+    } catch (err) {
+        console.error('Update failed:', err)
+        updateMessage.value = err?.data?.statusMessage || 'Failed to update status.'
+    } finally {
+        isUpdating.value = false
+    }
+}
 
 const statusLabel = computed(() => {
     const map = {
@@ -208,7 +248,7 @@ const statusLabel = computed(() => {
         on_leave: 'On Leave',
         absent: 'Absent',
     }
-    return map[selectedStatus.value] || 'Available'
+    return map[authStore.user?.status] || 'Available'
 })
 
 const openPopup = () => {
@@ -222,43 +262,5 @@ const closePopup = () => {
 const logout = () => {
     authStore.logout()
     router.push('/login')
-}
-
-const updateStatus = async () => {
-    try {
-        const token = localStorage.getItem('auth_token')
-        if (!token) {
-            alert('Not authenticated')
-            return
-        }
-
-        const response = await $fetch('/api/user/status', {
-            method: 'PUT',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: {
-                status: selectedStatus.value,
-                statusNote: statusNote.value
-            }
-        })
-
-        if (response.success) {
-            // Update the store
-            authStore.setUser({
-                ...authStore.user,
-                status: selectedStatus.value,
-                statusNote: statusNote.value,
-                statusUpdatedAt: response.user.statusUpdatedAt
-            })
-            alert('Status updated successfully!')
-        } else {
-            alert('Failed to update status')
-        }
-    } catch (error) {
-        console.error('Error updating status:', error)
-        alert('Error updating status')
-    }
 }
 </script>
