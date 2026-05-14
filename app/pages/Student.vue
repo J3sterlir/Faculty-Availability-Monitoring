@@ -3,6 +3,11 @@
     <!-- Navbar (kiosk mode: no profile/settings) -->
     <nav class="bg-[#F0F2FE] flex flex-row p-6 pl-20 pr-20 justify-between sticky top-0 z-10 shadow-md">
       <div class="flex flex-row gap-4 items-center">
+        <NuxtLink to="/"
+          class="flex items-center gap-2 text-sm font-semibold text-[#151C27]/60 hover:text-[#151C27] transition-colors">
+          <Icon name="ic:baseline-arrow-back" class="h-4 w-4" />
+          Home
+        </NuxtLink>
         <h6 class="font-bold text-lg">Faculty Availability Hub</h6>
         <div class="h-full w-px bg-gray-400"></div>
         <div class="bg-[#DCE2F3] p-2 rounded-full flex flex-row gap-2 items-center">

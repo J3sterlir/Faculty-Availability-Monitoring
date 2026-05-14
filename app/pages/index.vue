@@ -23,10 +23,10 @@
                             class="px-4 py-2 rounded-full text-sm font-semibold text-white hover:bg-white/10 transition-colors">
                             Features
                         </NuxtLink>
-                        <NuxtLink to="/about"
+                        <a href="#about"
                             class="px-4 py-2 rounded-full text-sm font-semibold text-white hover:bg-white/10 transition-colors">
                             About
-                        </NuxtLink>
+                        </a>
                         <div class="w-px h-5 bg-white/20 mx-1"></div>
                         <NuxtLink to="/login"
                             class="bg-white px-3 py-2 text-sm font-semibold text-[#001E40] hover:bg-white/90 transition-colors">
@@ -107,23 +107,63 @@
             </div>
         </div>
 
+        <!-- Five colors section -->
         <div class="p-0 m-auto h-fit mt-6 mb-30 w-11/12 max-w-6xl sm:mt-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2">
-                <div class="w-full flex">
-                    <div class="flex flex-col justify-center">
-                        <div class="m-1 sm:m-1 flex flex-col gap-31">
-                            <h1 class="text-3xl sm:text-4xl lg:text-6xl font-bold text-[#001E40]">Five colors tell
-                                you everything you need to know</h1>
-                            <h1 class=" text-base sm:text-lg font-normal text-[#001E40] ">Green means available now.
-                                Orange means busy but on campus. Blue is virtual only. Gray is on leave. Red is absent.
-                                No confusion, no guessing.</h1>
+            <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+
+                <!-- Left: text + color badges -->
+                <div class="flex flex-col gap-6">
+                    <div class="flex flex-col gap-4">
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#001E40] leading-tight">
+                            Five colors tell you everything you need to know
+                        </h1>
+                        <p class="text-base sm:text-lg font-normal text-[#001E40]/70">
+                            No more guessing if your professor is in. A glance at the board tells you exactly where they
+                            stand.
+                        </p>
+                    </div>
+
+                    <!-- Color badges -->
+                    <div class="flex flex-col gap-3">
+                        <div
+                            class="flex items-center gap-3 border border-gray-100 rounded-xl px-4 py-3 bg-white shadow-sm">
+                            <div class="h-3 w-3 rounded-full bg-[#1B6D24] shrink-0"></div>
+                            <span class="text-sm font-semibold text-[#1B6D24] w-28">Available</span>
+                            <span class="text-sm text-gray-400">In office, ready to meet</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-3 border border-gray-100 rounded-xl px-4 py-3 bg-white shadow-sm">
+                            <div class="h-3 w-3 rounded-full bg-[#BA1A1A] shrink-0"></div>
+                            <span class="text-sm font-semibold text-[#BA1A1A] w-28">Busy</span>
+                            <span class="text-sm text-gray-400">On campus but occupied</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-3 border border-gray-100 rounded-xl px-4 py-3 bg-white shadow-sm">
+                            <div class="h-3 w-3 rounded-full bg-blue-600 shrink-0"></div>
+                            <span class="text-sm font-semibold text-blue-600 w-28">Virtual Only</span>
+                            <span class="text-sm text-gray-400">Online meetings only</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-3 border border-gray-100 rounded-xl px-4 py-3 bg-white shadow-sm">
+                            <div class="h-3 w-3 rounded-full bg-amber-600 shrink-0"></div>
+                            <span class="text-sm font-semibold text-amber-600 w-28">On Leave</span>
+                            <span class="text-sm text-gray-400">Away from campus</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-3 border border-gray-100 rounded-xl px-4 py-3 bg-white shadow-sm">
+                            <div class="h-3 w-3 rounded-full bg-gray-400 shrink-0"></div>
+                            <span class="text-sm font-semibold text-gray-500 w-28">Absent</span>
+                            <span class="text-sm text-gray-400">Not available today</span>
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-end lg:justify-end">
-                    <img src="https://images.unsplash.com/photo-1537202108838-e7072bad1927" alt="Hero Image"
-                        class="w-full lg:w-[75%] h-fit sm:h-30 lg:h-92 object-cover shadow-md" />
+
+                <!-- Right: image -->
+                <div class="rounded-xl overflow-hidden shadow-md aspect-[4/3]">
+                    <img src="https://images.unsplash.com/photo-1537202108838-e7072bad1927?w=800&q=80"
+                        alt="Campus library" class="w-full h-full object-cover" />
                 </div>
+
             </div>
         </div>
         <section id="features" class="scroll-mt-10"></section>
@@ -138,60 +178,71 @@
             <div class="">
 
             </div>
-            <div class="flex flex-col justify-center items-center p-0 m-auto w-11/12 max-w-6xl sm:mt-10"
-                style="background: #c7cdff;
-            background: radial-gradient(circle, rgba(199, 205, 255, 1) 0%, rgba(255, 255, 255, 1) 73%, rgba(255, 255, 255, 1) 100%);">
-                <div class="grid grid-cols-3 grid-rows-2 gap-5">
-                    <div class="bg-white text-black row-span-2 flex flex-col border">
-                        <div class="bg-white text-black mb-1">
-                            <img src="https://placehold.co/600x400" alt="">
+            <div class="flex flex-col justify-center items-center p-0 m-auto w-11/12 max-w-6xl sm:mt-10">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                    <!-- Card 1 - tall -->
+                    <div class="bg-white border flex flex-col gap-5 p-8 lg:row-span-2">
+                        <div class="h-12 w-12 rounded-full bg-[#001E40]/10 flex items-center justify-center">
+                            <Icon name="ic:baseline-bolt" class="h-6 w-6 text-[#001E40]" />
                         </div>
-                        <div class="m-6 gap-5 flex flex-col">
-                            <h1 class="font-semibold">Real-time</h1>
-                            <h4 class="font-bold text-[1.90rem] leading-tight">Status updates happen instantly</h4>
-                            <h1 class="font-light">When a professor changes their status, you see it right away.</h1>
+                        <h1 class="font-semibold text-sm text-[#001E40]/60 uppercase tracking-wide">Real-time</h1>
+                        <h4 class="font-bold text-[1.90rem] leading-tight text-[#001E40]">Status updates happen
+                            instantly</h4>
+                        <p class="font-light text-gray-500">When a professor changes their status, every student on
+                            campus sees it right away. No refresh needed.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white border p-6 gap-4 flex flex-col">
+                        <Icon name="material-symbols:history-2-rounded" class="h-10 w-10 text-[#001E40]" />
+                        <h4 class="font-bold text-[1.60rem] leading-tight text-[#001E40]">See when they last updated
+                        </h4>
+                        <p class="font-light text-gray-500 text-sm">Timestamps show exactly when a status was last
+                            changed.</p>
+                    </div>
+
+                    <!-- Card 3 - tall -->
+                    <div class="bg-white border flex flex-col gap-5 p-8 lg:row-span-2">
+                        <div class="h-12 w-12 rounded-full bg-[#001E40]/10 flex items-center justify-center">
+                            <Icon name="ic:outline-video-chat" class="h-6 w-6 text-[#001E40]" />
                         </div>
+                        <h1 class="font-semibold text-sm text-[#001E40]/60 uppercase tracking-wide">Virtual</h1>
+                        <h4 class="font-bold text-[1.90rem] leading-tight text-[#001E40]">Remote and on-campus, all in
+                            one place</h4>
+                        <p class="font-light text-gray-500">Know if a professor is available online or in-person before
+                            you head over.</p>
                     </div>
-                    <div class="bg-white text-black row-span-1 border p-6 gap-5 flex flex-col">
-                        <Icon name="material-symbols:history-2-rounded" class="h-10 w-10" />
-                        <h1 class="font-bold text-[1.90rem] leading-tight">See when they last updated</h1>
-                        <h1 class="font-light">When a professor changes their status, you see it right away.</h1>
+
+                    <!-- Card 4 -->
+                    <div class="bg-white border p-6 gap-4 flex flex-col">
+                        <Icon name="ic:baseline-check-circle-outline" class="h-10 w-10 text-[#1B6D24]" />
+                        <h4 class="font-bold text-[1.60rem] leading-tight text-[#001E40]">Five clear status types</h4>
+                        <p class="font-light text-gray-500 text-sm">Available, Busy, Virtual Only, On Leave, or Absent —
+                            no ambiguity.</p>
                     </div>
-                    <div class="bg-white text-black row-span-2 border">
-                        <div class="bg-white text-black mb-1">
-                            <img src="https://placehold.co/600x400" alt="">
-                        </div>
-                        <div class="m-6 gap-5 flex flex-col">
-                            <h1 class="font-semibold">Real-time</h1>
-                            <h4 class="font-bold text-[1.90rem] leading-tight">Status updates happen instantly</h4>
-                            <h1 class="font-light">When a professor changes their status, you see it right away.</h1>
-                        </div>
+
+                    <!-- Card 5 -->
+                    <div class="bg-white border p-6 gap-4 flex flex-col">
+                        <Icon name="ic:baseline-lock" class="h-10 w-10 text-[#001E40]" />
+                        <h4 class="font-bold text-[1.60rem] leading-tight text-[#001E40]">Faculty-only controls</h4>
+                        <p class="font-light text-gray-500 text-sm">Only verified faculty can update their own status.
+                            Students get a read-only view.</p>
                     </div>
-                    <div class="bg-white text-black row-span-2 border">
-                        <div class="bg-white text-black mb-1">
-                            <img src="https://placehold.co/600x400" alt="">
-                        </div>
-                        <div class="m-6 gap-5 flex flex-col">
-                            <h1 class="font-semibold">Real-time</h1>
-                            <h4 class="font-bold text-[1.90rem] leading-tight">Status updates happen instantly</h4>
-                            <h1 class="font-light">When a professor changes their status, you see it right away.</h1>
-                        </div>
+
+                    <!-- Card 6 -->
+                    <div class="bg-white border p-6 gap-4 flex flex-col">
+                        <Icon name="ic:baseline-search" class="h-10 w-10 text-[#001E40]" />
+                        <h4 class="font-bold text-[1.60rem] leading-tight text-[#001E40]">Filter by department</h4>
+                        <p class="font-light text-gray-500 text-sm">Students can narrow down the board to their specific
+                            college or department.</p>
                     </div>
-                    <div class="bg-white text-black row-span-1 border p-6 gap-5 flex flex-col">
-                        <Icon name="material-symbols:history-2-rounded" class="h-10 w-10" />
-                        <h1 class="font-bold text-[1.90rem] leading-tight">See when they last updated</h1>
-                        <h1 class="font-light">When a professor changes their status, you see it right away.</h1>
-                    </div>
-                    <div class="bg-white text-black row-span-1 border p-6 gap-5 flex flex-col">
-                        <Icon name="material-symbols:history-2-rounded" class="h-10 w-10" />
-                        <h1 class="font-bold text-[1.90rem] leading-tight">See when they last updated</h1>
-                        <h1 class="font-light">When a professor changes their status, you see it right away.</h1>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-
+    <section id="about" class="scroll-mt-16"></section>
     <footer class="bg-[#001E40] p-10 text-center text-white h-fit flex flex-col justify-between">
         <div class="flex flex-row p-6 justify-between">
             <div class="flex flex-col text-start gap-3">
