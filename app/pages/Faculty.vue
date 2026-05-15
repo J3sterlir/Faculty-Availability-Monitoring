@@ -54,101 +54,102 @@
 
         <!-- Status Cards -->
         <div class="p-1 md:pt-0 sm:p-11">
-            <div
-                class="flex flex-col m-3 mt-3 bg-white rounded-xl shadow-md h-full lg:p-10 md:p-5 md:pl-0 md:pr-0 sm:m-30 sm:mt-15 sm:pl-10 sm:pr-10">
-                <div
-                    class="flex flex-col items-center pt-5 lg:items-start lg:pt-0 sm:p-10 md:items-center sm:items-center">
+            <div class="flex flex-col m-3 mt-3 bg-white rounded-xl shadow-md h-full sm:m-30 sm:mt-15">
+                <div class="flex flex-col items-center pt-5 lg:items-start lg:pt-0 p-6 sm:p-10 pb-0 sm:pb-0">
                     <h1 class="text-xl font-bold">Set your status</h1>
                 </div>
-                <div
-                    class="flex flex-row flex-wrap gap-5 justify-center items-stretch p-10 pl-5 pr-5 sm:justify-between sm:pl-20 sm:pr-20">
 
-                    <!-- Available -->
-                    <div @click="selectedStatus = 'available'"
-                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border p-4 text-center cursor-pointer transition-all duration-200"
-                        :class="selectedStatus === 'available'
-                            ? 'border-[#1B6D24] bg-[#1B6D24]/10 text-[#1B6D24] scale-105 shadow-md'
-                            : 'border-gray-200 bg-gray-50 text-gray-400 scale-95'">
-                        <Icon name="ic:baseline-check-circle-outline"
-                            :class="selectedStatus === 'available' ? 'h-12 w-12' : 'h-9 w-9'" />
-                        <h1 :class="selectedStatus === 'available' ? 'font-bold text-base' : 'text-sm'">Available</h1>
-                    </div>
+                <div class="flex flex-col gap-6 p-6 sm:p-10">
 
-                    <!-- Busy -->
-                    <div @click="selectedStatus = 'busy'"
-                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border p-4 text-center cursor-pointer transition-all duration-200"
-                        :class="selectedStatus === 'busy'
-                            ? 'border-[#BA1A1A] bg-[#BA1A1A]/10 text-[#BA1A1A] scale-105 shadow-md'
-                            : 'border-gray-200 bg-gray-50 text-gray-400 scale-95'">
-                        <Icon name="ic:baseline-block" :class="selectedStatus === 'busy' ? 'h-12 w-12' : 'h-9 w-9'" />
-                        <h1 :class="selectedStatus === 'busy' ? 'font-bold text-base' : 'text-sm'">Busy</h1>
-                    </div>
+                    <!-- Status buttons: vertical stack on mobile, single row on desktop -->
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
 
-                    <!-- Virtual Only -->
-                    <div @click="selectedStatus = 'virtual_only'"
-                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border p-4 text-center cursor-pointer transition-all duration-200"
-                        :class="selectedStatus === 'virtual_only'
-                            ? 'border-blue-500 bg-blue-500/10 text-blue-600 scale-105 shadow-md'
-                            : 'border-gray-200 bg-gray-50 text-gray-400 scale-95'">
-                        <Icon name="ic:outline-video-chat"
-                            :class="selectedStatus === 'virtual_only' ? 'h-12 w-12' : 'h-9 w-9'" />
-                        <h1 :class="selectedStatus === 'virtual_only' ? 'font-bold text-base' : 'text-sm'">Virtual Only
-                        </h1>
-                    </div>
-
-                    <!-- On Leave -->
-                    <div @click="selectedStatus = 'on_leave'"
-                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border p-4 text-center cursor-pointer transition-all duration-200"
-                        :class="selectedStatus === 'on_leave'
-                            ? 'border-yellow-500 bg-yellow-500/10 text-yellow-600 scale-105 shadow-md'
-                            : 'border-gray-200 bg-gray-50 text-gray-400 scale-95'">
-                        <Icon name="ic:baseline-flight-takeoff"
-                            :class="selectedStatus === 'on_leave' ? 'h-12 w-12' : 'h-9 w-9'" />
-                        <h1 :class="selectedStatus === 'on_leave' ? 'font-bold text-base' : 'text-sm'">On Leave</h1>
-                    </div>
-
-                    <!-- Absent -->
-                    <div @click="selectedStatus = 'absent'"
-                        class="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl border p-4 text-center cursor-pointer transition-all duration-200"
-                        :class="selectedStatus === 'absent'
-                            ? 'border-gray-500 bg-gray-500/10 text-gray-600 scale-105 shadow-md'
-                            : 'border-gray-200 bg-gray-50 text-gray-400 scale-95'">
-                        <Icon name="ic:baseline-event-busy"
-                            :class="selectedStatus === 'absent' ? 'h-12 w-12' : 'h-9 w-9'" />
-                        <h1 :class="selectedStatus === 'absent' ? 'font-bold text-base' : 'text-sm'">Absent</h1>
-                    </div>
-                    <!-- Status Note + Update Button -->
-                    <div class="flex flex-col gap-4 px-5 pb-8 sm:px-20">
-                        <div class="flex flex-col gap-1">
-                            <label class="text-sm font-semibold text-gray-600">
-                                Optional Note
-                            </label>
-                            <textarea v-model="statusNote" maxlength="200" rows="3"
-                                placeholder="e.g. Available after 2pm, check email first..." class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm
-             text-gray-700 resize-none focus:outline-none focus:ring-2
-             focus:ring-[#1B6D24]/40 transition" />
-                            <span class="text-xs text-gray-400 text-right">
-                                {{ statusNote.length }}/200
-                            </span>
+                        <!-- Available -->
+                        <div @click="selectedStatus = 'available'"
+                            class="flex sm:flex-col flex-row items-center sm:justify-center gap-3 sm:gap-4 rounded-xl border p-4 text-left sm:text-center cursor-pointer transition-all duration-200 sm:flex-1"
+                            :class="selectedStatus === 'available'
+                                ? 'border-[#1B6D24] bg-[#1B6D24]/10 text-[#1B6D24] shadow-md'
+                                : 'border-gray-200 bg-gray-50 text-gray-400'">
+                            <Icon name="ic:baseline-check-circle-outline"
+                                :class="selectedStatus === 'available' ? 'h-8 w-8 sm:h-12 sm:w-12 shrink-0' : 'h-7 w-7 sm:h-9 sm:w-9 shrink-0'" />
+                            <h1 :class="selectedStatus === 'available' ? 'font-bold text-sm sm:text-base' : 'text-sm'">
+                                Available</h1>
                         </div>
 
-                        <button @click="updateStatus" :disabled="isUpdating" class="self-end flex items-center gap-2 rounded-xl px-6 py-3 text-sm
-           font-semibold text-white transition-all duration-200
-           bg-[#1B6D24] hover:bg-[#155720] disabled:opacity-50
-           disabled:cursor-not-allowed shadow-sm hover:shadow-md">
-                            <Icon :name="isUpdating
-                                ? 'ic:baseline-hourglass-empty'
-                                : 'ic:baseline-check'" class="h-4 w-4" :class="{ 'animate-spin': isUpdating }" />
+                        <!-- Busy -->
+                        <div @click="selectedStatus = 'busy'"
+                            class="flex sm:flex-col flex-row items-center sm:justify-center gap-3 sm:gap-4 rounded-xl border p-4 text-left sm:text-center cursor-pointer transition-all duration-200 sm:flex-1"
+                            :class="selectedStatus === 'busy'
+                                ? 'border-[#BA1A1A] bg-[#BA1A1A]/10 text-[#BA1A1A] shadow-md'
+                                : 'border-gray-200 bg-gray-50 text-gray-400'">
+                            <Icon name="ic:baseline-block"
+                                :class="selectedStatus === 'busy' ? 'h-8 w-8 sm:h-12 sm:w-12 shrink-0' : 'h-7 w-7 sm:h-9 sm:w-9 shrink-0'" />
+                            <h1 :class="selectedStatus === 'busy' ? 'font-bold text-sm sm:text-base' : 'text-sm'">Busy
+                            </h1>
+                        </div>
+
+                        <!-- Virtual Only -->
+                        <div @click="selectedStatus = 'virtual_only'"
+                            class="flex sm:flex-col flex-row items-center sm:justify-center gap-3 sm:gap-4 rounded-xl border p-4 text-left sm:text-center cursor-pointer transition-all duration-200 sm:flex-1"
+                            :class="selectedStatus === 'virtual_only'
+                                ? 'border-blue-500 bg-blue-500/10 text-blue-600 shadow-md'
+                                : 'border-gray-200 bg-gray-50 text-gray-400'">
+                            <Icon name="ic:outline-video-chat"
+                                :class="selectedStatus === 'virtual_only' ? 'h-8 w-8 sm:h-12 sm:w-12 shrink-0' : 'h-7 w-7 sm:h-9 sm:w-9 shrink-0'" />
+                            <h1
+                                :class="selectedStatus === 'virtual_only' ? 'font-bold text-sm sm:text-base' : 'text-sm'">
+                                Virtual Only</h1>
+                        </div>
+
+                        <!-- On Leave -->
+                        <div @click="selectedStatus = 'on_leave'"
+                            class="flex sm:flex-col flex-row items-center sm:justify-center gap-3 sm:gap-4 rounded-xl border p-4 text-left sm:text-center cursor-pointer transition-all duration-200 sm:flex-1"
+                            :class="selectedStatus === 'on_leave'
+                                ? 'border-yellow-500 bg-yellow-500/10 text-yellow-600 shadow-md'
+                                : 'border-gray-200 bg-gray-50 text-gray-400'">
+                            <Icon name="ic:baseline-flight-takeoff"
+                                :class="selectedStatus === 'on_leave' ? 'h-8 w-8 sm:h-12 sm:w-12 shrink-0' : 'h-7 w-7 sm:h-9 sm:w-9 shrink-0'" />
+                            <h1 :class="selectedStatus === 'on_leave' ? 'font-bold text-sm sm:text-base' : 'text-sm'">On
+                                Leave</h1>
+                        </div>
+
+                        <!-- Absent -->
+                        <div @click="selectedStatus = 'absent'"
+                            class="flex sm:flex-col flex-row items-center sm:justify-center gap-3 sm:gap-4 rounded-xl border p-4 text-left sm:text-center cursor-pointer transition-all duration-200 sm:flex-1"
+                            :class="selectedStatus === 'absent'
+                                ? 'border-gray-500 bg-gray-500/10 text-gray-600 shadow-md'
+                                : 'border-gray-200 bg-gray-50 text-gray-400'">
+                            <Icon name="ic:baseline-event-busy"
+                                :class="selectedStatus === 'absent' ? 'h-8 w-8 sm:h-12 sm:w-12 shrink-0' : 'h-7 w-7 sm:h-9 sm:w-9 shrink-0'" />
+                            <h1 :class="selectedStatus === 'absent' ? 'font-bold text-sm sm:text-base' : 'text-sm'">
+                                Absent</h1>
+                        </div>
+
+                    </div>
+
+                    <!-- Optional Note + Update Button: now full width, aligned with cards above -->
+                    <div class="flex flex-col gap-3">
+                        <div class="flex flex-col gap-1">
+                            <label class="text-sm font-semibold text-gray-600">Optional Note</label>
+                            <textarea v-model="statusNote" maxlength="200" rows="3"
+                                placeholder="e.g. Available after 2pm, check email first..."
+                                class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-[#1B6D24]/40 transition" />
+                            <span class="text-xs text-gray-400 text-right">{{ statusNote.length }}/200</span>
+                        </div>
+
+                        <button @click="updateStatus" :disabled="isUpdating"
+                            class="w-full sm:w-auto sm:self-end flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white transition-all duration-200 bg-[#1B6D24] hover:bg-[#155720] disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md">
+                            <Icon :name="isUpdating ? 'ic:baseline-hourglass-empty' : 'ic:baseline-check'"
+                                class="h-4 w-4" :class="{ 'animate-spin': isUpdating }" />
                             {{ isUpdating ? 'Updating...' : 'Update Status' }}
                         </button>
 
-                        <!-- Feedback message -->
-                        <p v-if="updateMessage" class="text-sm font-medium" :class="updateMessage.includes('successfully')
-                            ? 'text-[#1B6D24]'
-                            : 'text-red-600'">
+                        <p v-if="updateMessage" class="text-sm font-medium"
+                            :class="updateMessage.includes('successfully') ? 'text-[#1B6D24]' : 'text-red-600'">
                             {{ updateMessage }}
                         </p>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -175,7 +176,6 @@
                 </div>
             </div>
         </div>
-
         <footer class="bg-[#F0F2FE] z-10 bottom-0">
             <div class="flex flex-row gap-4 items-center justify-center p-6">
                 <h6 class="font-bold text-sm text-[#151C27]/50">© 2026 Faculty Availability Hub. All rights reserved.
