@@ -52,6 +52,15 @@
               <label for="password" class="mb-2 text-sm font-medium text-gray-900">Password</label>
               <input type="password" id="password" v-model="form.password" required
                 class="border border-gray-300 bg-[#E2E8F8] rounded-md p-2 w-full" />
+              <!-- Password requirements -->
+              <div v-if="showPasswordHints" class="mt-2 flex flex-col gap-1">
+                <div v-for="rule in passwordRules" :key="rule.label" class="flex items-center gap-1.5 text-xs"
+                  :class="rule.valid ? 'text-[#1B6D24]' : 'text-gray-400'">
+                  <Icon :name="rule.valid ? 'ic:baseline-check-circle' : 'ic:baseline-radio-button-unchecked'"
+                    class="h-3.5 w-3.5 shrink-0" />
+                  {{ rule.label }}
+                </div>
+              </div>
             </div>
 
             <!-- Error message (if any) -->
@@ -85,7 +94,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -100,14 +109,22 @@ const form = ref({
   password: ''
 })
 
+const passwordRules = computed(() => [
+  { label: 'At least 8 characters', valid: form.value.password.length >= 8 },
+  { label: 'At least 1 uppercase letter', valid: /[A-Z]/.test(form.value.password) },
+  { label: 'At least 1 number', valid: /[0-9]/.test(form.value.password) },
+  { label: 'At least 1 symbol', valid: /[^A-Za-z0-9]/.test(form.value.password) },
+])
+const showPasswordHints = computed(() => form.value.password.length > 0)
+
 const handleRegister = async () => {
   errorMessage.value = ''
   isLoading.value = true
 
   try {
     // Validate password strength (optional)
-    if (form.value.password.length < 6) {
-      throw new Error('Password must be at least 6 characters')
+    if (passwordRules.value.some(r => !r.valid)) {
+      throw new Error('Password does not meet all requirements')
     }
 
     // Call your backend registration API
