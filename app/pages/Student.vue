@@ -131,19 +131,19 @@ const statusLabelMap = {
 }
 
 const statusBadgeMap = {
-  available: 'bg-[#22C55E]/10',
-  busy: 'bg-[#F97316]/10',
-  virtual_only: 'bg-[#3B82F6]/10',
-  on_leave: 'bg-[#6B7280]/10',
-  absent: 'bg-[#EF4444]/10',
+  available: 'bg-[#1B6D24]/10',
+  busy: 'bg-[#BA1A1A]/10',
+  virtual_only: 'bg-blue-500/10',
+  on_leave: 'bg-orange-500/10',
+  absent: 'bg-gray-400/10',
 }
 
 const statusTextMap = {
-  available: 'text-[#22C55E]',
-  busy: 'text-[#F97316]',
-  virtual_only: 'text-[#3B82F6]',
-  on_leave: 'text-[#6B7280]',
-  absent: 'text-[#EF4444]',
+  available: 'text-[#1B6D24]',
+  busy: 'text-[#BA1A1A]',
+  virtual_only: 'text-blue-600',
+  on_leave: 'text-orange-500',
+  absent: 'text-gray-500',
 }
 
 // Format time since last update
