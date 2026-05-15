@@ -84,6 +84,10 @@
                   {{ statusLabelMap[prof.status] || prof.status }}
                 </h1>
               </div>
+              <!-- Faculty Status Note -->
+              <p v-if="prof.statusNote" class="text-xs text-[#43474F]/70 italic leading-snug">
+                "{{ prof.statusNote }}"
+              </p>
               <hr class="border-[#C3C6D1]/50">
               <div class="flex flex-row justify-between items-center">
                 <div class="flex flex-row items-center gap-1">
