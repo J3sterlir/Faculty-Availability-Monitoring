@@ -114,7 +114,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const professors = ref([])
 const searchQuery = ref('')
@@ -191,12 +191,23 @@ const filteredProfessors = computed(() => {
   return list
 })
 
-onMounted(async () => {
+let pollingInterval = null
+
+const fetchProfessors = async () => {
   try {
     const res = await $fetch('/api/professors')
     professors.value = res.professors
   } catch (err) {
     console.error('Failed to fetch professors:', err)
   }
+}
+
+onUnmounted(() => {
+  clearInterval(pollingInterval)
+})
+
+onMounted(() => {
+  fetchProfessors()
+  pollingInterval = setInterval(fetchProfessors, 10000) // refresh every 10 seconds
 })
 </script>
